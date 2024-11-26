@@ -6,6 +6,78 @@ public class JogadorFutsal {
     private int numero;
     private int gols_totais;
     private int gols_campeonato;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public int getGols_totais() {
+        return gols_totais;
+    }
+
+    public void setGols_totais(int gols_totais) {
+        this.gols_totais = gols_totais;
+    }
+
+    public int getGols_campeonato() {
+        return gols_campeonato;
+    }
+
+    public void setGols_campeonato(int gols_campeonato) {
+        this.gols_campeonato = gols_campeonato;
+    }
+
+    public int getPontos_ataque() {
+        return pontos_ataque;
+    }
+
+    public void setPontos_ataque(int pontos_ataque) {
+        this.pontos_ataque = pontos_ataque;
+    }
+
+    public int getPontos_defesa() {
+        return pontos_defesa;
+    }
+
+    public void setPontos_defesa(int pontos_defesa) {
+        this.pontos_defesa = pontos_defesa;
+    }
+
+    public PosicaoFutsal getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(PosicaoFutsal posicao) {
+        this.posicao = posicao;
+    }
+
+    public int getN_jogador() {
+        return n_jogador;
+    }
+
+    public void setN_jogador(int n_jogador) {
+        this.n_jogador = n_jogador;
+    }
+
     private int pontos_ataque;
     private int pontos_defesa;
     private PosicaoFutsal posicao;

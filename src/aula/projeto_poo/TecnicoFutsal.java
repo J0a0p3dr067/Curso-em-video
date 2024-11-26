@@ -3,7 +3,7 @@ package aula.projeto_poo;
 public class TecnicoFutsal {
     private String nome;
     private int idade;
-    private PosiçãoFutsal posiçao;
+    private PosicaoFutsal posicao;
     private Especialidade especialidade;
     private int pontosEspecialidade;
 
@@ -19,7 +19,7 @@ public class TecnicoFutsal {
         System.out.println("///////////////////////////");
         System.out.println("Nome: " + nome);
         System.out.println("idade: " + idade);
-        System.out.println("posição: " + posiçao);
+        System.out.println("posição: " + posicao);
         System.out.println("Especialidade: " + especialidade );
         System.out.println("pontos de Especialidade: " + pontosEspecialidade);
     }
@@ -56,15 +56,15 @@ public class TecnicoFutsal {
     /**
      * @return PosiçãoFutsal return the posiçaõ
      */
-    public PosiçãoFutsal getPosiçaõ() {
-        return posiçaõ;
+    public PosicaoFutsal getPosiçaõ() {
+        return posicao;
     }
 
     /**
      * @param posiçaõ the posiçaõ to set
      */
-    public void setPosiçaõ(PosiçãoFutsal posiçaõ) {
-        this.posiçaõ = posiçaõ;
+    public void setPosiçaõ(PosicaoFutsal posiçaõ) {
+        this.posicao = posiçaõ;
     }
 
     /**
