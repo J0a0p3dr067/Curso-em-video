@@ -25,6 +25,8 @@ public class TecnicoFutsal {
     }
 
 
+
+    
     /**
      * @return String return the nome
      */
@@ -51,20 +53,24 @@ public class TecnicoFutsal {
      */
     public void setIdade(int idade) {
         this.idade = idade;
+
+        if (idade < 25) {
+            System.out.println("muito jovem para ser tecnico");
+        }
     }
 
     /**
-     * @return PosiçãoFutsal return the posiçaõ
+     * @return PosiçãoFutsal return the posiçao
      */
-    public PosicaoFutsal getPosiçaõ() {
+    public PosicaoFutsal getPosicao() {
         return posicao;
     }
 
     /**
-     * @param posiçaõ the posiçaõ to set
+     * @param posiçao the posiçao to set
      */
-    public void setPosiçaõ(PosicaoFutsal posiçaõ) {
-        this.posicao = posiçaõ;
+    public void setPosicao(PosicaoFutsal posiçao) {
+        this.posicao = posiçao;
     }
 
     /**
