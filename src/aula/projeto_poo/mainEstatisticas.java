@@ -3,9 +3,9 @@ package aula.projeto_poo;
 public class mainEstatisticas {
     public static void main(String[] args) {
         
-        TecnicoFutsal roberto = new TecnicoFutsal("roberto",19);
+        TecnicoFutsal jose = new TecnicoFutsal("jose",39);
 
-        roberto.exibirPerfil();
+        jose.exibirPerfil();
         
         
     }

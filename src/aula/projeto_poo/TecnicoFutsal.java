@@ -11,6 +11,15 @@ public class TecnicoFutsal {
     public TecnicoFutsal(String nome, int idade) {
         this.nome = nome;
         this.idade = idade;
+        if (idade < 25) {
+            System.out.println("muito jovem para ser tecnico");
+        }
+
+        if (pontosEspecialidade >= 1 && pontosEspecialidade <= 5 ) {
+            System.err.println("tudo certo ");
+        } else {
+            System.out.println("Pontos em especilidade invalido");
+        }
     }
 
     public void exibirPerfil() {
