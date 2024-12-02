@@ -9,7 +9,9 @@ public class mainFusal {
 
     TimeFustsal time = new TimeFustsal("paisadur");
 
-    
+    time.gerarTimeRandom();
+
+  
       
 
      

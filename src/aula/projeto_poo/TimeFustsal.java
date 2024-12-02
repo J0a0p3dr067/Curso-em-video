@@ -45,45 +45,65 @@ public class TimeFustsal {
     }
 
     public void gerarTimeRandom() {
-          Random random = new Random();
-        
-       
- 
-         // Gerando jogadores aleatórios
-         for (int i = 0; i < 20; i++) { // Criando 20 jogadores aleatórios
-             String nomeJogador = "Jogador " + (random.nextInt(100) + 1); // Nome aleatório
-             int idadeJogador = random.nextInt(10) + 18; // Idade aleatória entre 18 e 27
-             PosicaoFutsal[] posicoes = PosicaoFutsal.values(); // Posições possíveis (PIVO, GOLEIRO, ATACANTE, etc.)
-             PosicaoFutsal posicaoJogador = posicoes[random.nextInt(posicoes.length)]; // Posição aleatória
-             JogadorFutsal jogador = new JogadorFutsal(nomeJogador, idadeJogador, posicaoJogador);
- 
-             // Contratando o jogador
-             this.contratarJogador(jogador);
-         }
- 
-         System.out.println("Time " + this.nome + " gerado com sucesso!");
-     }
- 
+        Random random = new Random();
+
+        // Criando um técnico aleatório
+        int idadeTecnico = 30 + random.nextInt(25); // Idade entre 30 e 54
+        // Gerando a especialidade e os pontos de especialidade aleatoriamente
+        Especialidade[] especialidades = Especialidade.values();
+        Especialidade especialidadeAleatoria = especialidades[random.nextInt(especialidades.length)];
+        int pontosEspecialidade = random.nextInt(5) + 1; // Pontos de 1 a 5
+        TecnicoFutsal tecnicoAleatorio = new TecnicoFutsal("Técnico " + (random.nextInt(100) + 1), idadeTecnico);
+        tecnicoAleatorio.setEspecialidade(especialidadeAleatoria);
+        tecnicoAleatorio.setPontosEspecialidade(pontosEspecialidade);
+        this.contratarTecnico(tecnicoAleatorio);
+    
+        // Gerando números de camisas de 1 a 20 sem repetição
+        java.util.List<Integer> numerosCamisas = new java.util.ArrayList<>();
+        for (int i = 1; i <= 20; i++) {
+            numerosCamisas.add(i);
+        }
+        java.util.Collections.shuffle(numerosCamisas); // Embaralha os números
+    
+        // Gerando até 5 jogadores aleatórios
+        for (int i = 0; i < 5; i++) { // Máximo de 5 jogadores
+            String nomeJogador = "Jogador " + (random.nextInt(100) + 1);
+            int idadeJogador = random.nextInt(10) + 18; // Idade entre 18 e 27
+            PosicaoFutsal[] posicoes = PosicaoFutsal.values();
+            PosicaoFutsal posicaoJogador = posicoes[random.nextInt(posicoes.length)];
+            int numeroCamisa = numerosCamisas.remove(0); // Remove o primeiro número disponível
+    
+            // Criando o jogador com número de camisa único
+            JogadorFutsal jogador = new JogadorFutsal(nomeJogador, idadeJogador, posicaoJogador);
+            jogador.setNumero(numeroCamisa);
+    
+            // Contratando o jogador
+            this.contratarJogador(jogador);
+        }
+    
+        System.out.println("Time " + this.nome + " gerado com sucesso!");
+    }
     
 
     public void registrarVitoria() {
-        this.registrarVitoria();
+    this.estatisticas.incrementarVitorias();
+
     }
 
     public void registrarDerrota() {
-        this.registrarDerrota();
+        this.estatisticas.incrementarDerrotas();
     }
 
     public void registrarEmpate() {
-        this.registrarEmpate();
+       this.estatisticas.incrementarEmpates();
     }
 
     public void incrementaGolsMarcados (int incrementaGolsMarcados) {
-       
+       this.estatisticas.setGols_marcados(this.estatisticas.getGols_marcados() + incrementaGolsMarcados);
     }
 
     public void incrementaGolsSofrido ( int golsSofrido) {
-
+        this.estatisticas.setGols_sofridos(this.estatisticas.getGols_sofridos() + golsSofrido);
     }
 
     // public int pontoAtaque() {
