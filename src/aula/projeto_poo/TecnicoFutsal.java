@@ -63,9 +63,7 @@ public class TecnicoFutsal {
     public void setIdade(int idade) {
         this.idade = idade;
 
-        if (idade < 25) {
-            System.out.println("muito jovem para ser tecnico");
-        }
+       
     }
 
     /**

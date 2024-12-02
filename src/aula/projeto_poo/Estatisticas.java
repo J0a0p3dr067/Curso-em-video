@@ -77,8 +77,10 @@ public class Estatisticas {
     }
     @Override
     public String toString() {
-        
-        return super.toString();
+        return "Estatísticas: Títulos: " + titulo + ", Jogos: " + jogo + ", Pontos: " + pontos + 
+               ", Vitórias: " + vitorias + ", Empates: " + empates + ", Derrotas: " + derrotas + 
+               ", Gols Marcados: " + gols_marcados + ", Gols Sofridos: " + gols_sofridos + 
+               ", Saldo de Gols: " + saldoGols();
     }
 
     /**

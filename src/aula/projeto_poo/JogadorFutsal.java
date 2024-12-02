@@ -1,15 +1,16 @@
 package aula.projeto_poo;
 
+
 public class JogadorFutsal {
     private String nome;
     private int idade;
     private int numero;
     private int gols_totais;
     private int gols_campeonato;
-    private int pontos_ataque;
-    private int pontos_defesa;
+    private int pontos_ataque = 0;
+    private int pontos_defesa = 0;
     private PosicaoFutsal posicao;
-    private int n_jogador;
+    private int n_jogador = 0;
 
 
     public JogadorFutsal(String nome, int idade, PosicaoFutsal posicao) {
@@ -19,29 +20,55 @@ public class JogadorFutsal {
         this.gols_totais = 0;
         this.n_jogador = 0;
 
+        gerarPontos();
 
-        if (pontos_ataque >=1 && pontos_ataque <= 15)  {
-            System.out.println("Jogador nos paramentros");
-        } 
-         else {
-            System.out.println("Pontos de ataque invalido");
-        }
-        if (pontos_defesa >=1 && pontos_defesa <= 15)  {
-            System.out.println("Jogador nos paramentros");
+        // teste de idade
+        if (this.idade >= 18  ) {
+            System.out.println("Voce esta no time");
         } else {
-            System.out.println("Pontos de ataque invalido");
+            System.out.println("muito novo parqa jogar");
+        } 
+
+            // teste da camisa
+        if (this.n_jogador >= 1 && this.n_jogador <= 20) {
+            System.out.println("numero da camisa certo");
+        } else {
+            System.out.println("seu numero da camisa esta errado");
         }
+
+        
+
+       
     }
 
+        
     private void gerarPontos() {
+        java.util.Random random = new java.util.Random();
+        this.pontos_ataque = random.nextInt(15) + 1; // Entre 1 e 15
+        this.pontos_defesa = random.nextInt(15) + 1;
+
+            // teste para o goleiro
+        if (posicao == PosicaoFutsal.GOLEIRO && pontos_ataque >= 4 ) {
+            this.pontos_ataque = 4;
+        } else if (posicao == PosicaoFutsal.GOLEIRO && pontos_defesa < 10) {
+            this.pontos_defesa = 10 ;
+        } 
+
+        // teste pata atacante
+        if (posicao == PosicaoFutsal.PIVO && pontos_defesa >= 4) {
+            this.pontos_defesa = 4;
+        } else if (posicao == PosicaoFutsal.PIVO && pontos_ataque < 10) {
+            this.pontos_ataque = 10;
+        } 
 
     }
 
     public void registrarGol() {
-
+        this.gols_totais += 1;
+        this.gols_campeonato += 1;
     }
     public void reiniciarGolscampeonato() {
-
+        this.gols_campeonato = 0;
     }
 
     public void exibirPerfil() {
