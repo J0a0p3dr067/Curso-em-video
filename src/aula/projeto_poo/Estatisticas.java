@@ -7,7 +7,7 @@ public class Estatisticas {
     private int vitorias = 0;
     private int empates = 0;
     private int derrotas = 0;
-    private int gols_marcados = 0;
+    private int golsMarcados = 0;
     private int gols_sofridos = 0;
     
 
@@ -21,7 +21,7 @@ public class Estatisticas {
         this.vitorias = 0;
         this.empates = 0;
         this.derrotas = 0;
-        this.gols_marcados = 0;
+        this.golsMarcados = 0;
         this.gols_sofridos = 0;
     }
 
@@ -29,8 +29,8 @@ public class Estatisticas {
         this.setTitulo(this.getTitulo() + 1); 
     }
 
-    public void incrementarGols_Marcados(int gols_marcados) {
-        this.setGols_marcados(this.getGols_marcados() + gols_marcados);
+    public void incrementarGolsMarcados(int golsMarcados) {
+        this.setGolsMarcados(this.getGolsMarcados() + golsMarcados);
     }
 
     public void incrementarGols_Sofridos( int gols_sofridos) {
@@ -58,7 +58,7 @@ public class Estatisticas {
     }
 
     public int saldoGols() {
-        return this.gols_marcados - this.gols_sofridos;
+        return this.golsMarcados - this.gols_sofridos;
     }
 
     public void exibirEstatistica() {
@@ -72,15 +72,21 @@ public class Estatisticas {
         System.out.println("Vitorias " + getVitorias());
         System.out.println("empates " + getEmpates());
         System.out.println("Derrotas " + getDerrotas());
-        System.out.println("gols marcardos " + getGols_marcados());
+        System.out.println("gols marcardos " + getGolsMarcados());
         System.out.println("Gols sofridos " + getGols_sofridos());
     }
     @Override
     public String toString() {
-        return "Estatísticas: Títulos: " + titulo + ", Jogos: " + jogo + ", Pontos: " + pontos + 
-               ", Vitórias: " + vitorias + ", Empates: " + empates + ", Derrotas: " + derrotas + 
-               ", Gols Marcados: " + gols_marcados + ", Gols Sofridos: " + gols_sofridos + 
-               ", Saldo de Gols: " + saldoGols();
+         int saldoDeGols = this.golsMarcados - this.gols_sofridos;
+    return String.format(
+        "Vitórias: %d | Derrotas: %d | Empates: %d | Gols Marcados: %d | Gols Sofridos: %d | Saldo de Gols: %d",
+        this.vitorias,
+        this.derrotas,
+        this.empates,
+        this.golsMarcados,
+        this.gols_sofridos,
+        saldoDeGols
+    );
     }
 
     /**
@@ -164,17 +170,17 @@ public class Estatisticas {
 
 
     /**
-     * @return int return the gols_marcados
+     * @return int return the golsMarcados
      */
-    public int getGols_marcados() {
-        return gols_marcados;
+    public int getGolsMarcados() {
+        return golsMarcados;
     }
 
     /**
-     * @param gols_marcados the gols_marcados to set
+     * @param golsMarcados the golsMarcados to set
      */
-    public void setGols_marcados(int gols_marcados) {
-        this.gols_marcados = gols_marcados;
+    public void setGolsMarcados(int golsMarcados) {
+        this.golsMarcados = golsMarcados;
     }
 
 

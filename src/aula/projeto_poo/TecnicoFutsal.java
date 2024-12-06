@@ -1,5 +1,7 @@
 package aula.projeto_poo;
 
+import java.util.Random;
+
 public class TecnicoFutsal {
     private String nome;
     private int idade;
@@ -11,17 +13,18 @@ public class TecnicoFutsal {
     public TecnicoFutsal(String nome, int idade) {
         this.nome = nome;
         this.idade = idade;
-        if (idade < 25) {
-            System.out.println("muito jovem para ser tecnico");
-        }
 
-        if (pontosEspecialidade >= 1 && pontosEspecialidade <= 5 ) {
-            System.err.println("tudo certo ");
-        } else {
-            System.out.println("Pontos em especilidade invalido");
-        }
+        this.posicao = PosicaoFutsal.TECNICO;
+        this.especialidade = Especialidade.geraEspecialidade();
+
+        Random random = new Random();
+        this.pontosEspecialidade = random.nextInt(5) + 1; // Gera um valor entre 1 e 5 diretamente no construtor
+
+    
+
     }
 
+     
     public void exibirPerfil() {
         System.out.println("///////////////////////////");
         System.out.println("   Perfil do Tecnico   ");
@@ -61,7 +64,10 @@ public class TecnicoFutsal {
      * @param idade the idade to set
      */
     public void setIdade(int idade) {
-        this.idade = idade;
+        if (idade > 25) {
+            this.idade = idade;
+        } 
+           
 
        
     }
@@ -91,7 +97,9 @@ public class TecnicoFutsal {
      * @param especialidade the especialidade to set
      */
     public void setEspecialidade(Especialidade especialidade) {
-        this.especialidade = especialidade;
+        if (pontosEspecialidade >= 1 && pontosEspecialidade <= 5) {
+            this.especialidade = especialidade;
+        }
     }
 
     /**

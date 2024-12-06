@@ -6,7 +6,7 @@ public class JogadorFutsal {
     private int idade;
     private int numero;
     private int gols_totais;
-    private int gols_campeonato;
+    private int golsCampeonato;
     private int pontos_ataque = 0;
     private int pontos_defesa = 0;
     private PosicaoFutsal posicao;
@@ -22,22 +22,7 @@ public class JogadorFutsal {
 
         gerarPontos();
 
-        // teste de idade
-        if (this.idade >= 18  ) {
-            System.out.println("Voce esta no time");
-        } else {
-            System.out.println("muito novo parqa jogar");
-        } 
-
-            // teste da camisa
-        if (this.n_jogador >= 1 && this.n_jogador <= 20) {
-            System.out.println("numero da camisa certo");
-        } else {
-            System.out.println("seu numero da camisa esta errado");
-        }
-
         
-
        
     }
 
@@ -65,10 +50,10 @@ public class JogadorFutsal {
 
     public void registrarGol() {
         this.gols_totais += 1;
-        this.gols_campeonato += 1;
+        this.golsCampeonato += 1;
     }
-    public void reiniciarGolscampeonato() {
-        this.gols_campeonato = 0;
+    public void reiniciarGolsCampeonato() {
+        this.golsCampeonato = 0;
     }
 
     public void exibirPerfil() {
@@ -79,7 +64,7 @@ public class JogadorFutsal {
         System.out.println("Idade: " + idade);
         System.out.println("Numero da camisa: " + numero );
         System.out.println("gols totais: " + gols_totais);
-        System.out.println("gols de campeonato: " + gols_campeonato);
+        System.out.println("gols de campeonato: " + golsCampeonato);
         System.out.println("ataque: " + pontos_ataque);
         System.out.println("defesa: " + pontos_defesa);
         System.out.println("posição: " + posicao);
@@ -92,7 +77,10 @@ public class JogadorFutsal {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (this.idade >= 18  ) {
+            this.nome = nome;
+
+        }
     }
 
     public int getIdade() {
@@ -108,7 +96,9 @@ public class JogadorFutsal {
     }
 
     public void setNumero(int numero) {
-        this.numero = numero;
+        if (this.numero >= 1 && this.numero <= 20) {
+            this.numero = numero;
+        }
     }
 
     public int getGols_totais() {
@@ -119,12 +109,12 @@ public class JogadorFutsal {
         this.gols_totais = gols_totais;
     }
 
-    public int getGols_campeonato() {
-        return gols_campeonato;
+    public int getGolsCampeonato() {
+        return golsCampeonato;
     }
 
-    public void setGols_campeonato(int gols_campeonato) {
-        this.gols_campeonato = gols_campeonato;
+    public void setGolsCampeonato(int golsCampeonato) {
+        this.golsCampeonato = golsCampeonato;
     }
 
     public int getPontos_ataque() {

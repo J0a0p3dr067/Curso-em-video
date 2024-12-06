@@ -5,7 +5,7 @@ public class Lutador {
     private String nacionalidade;
     private int idade;
     private float altura;
-    private float peso;
+    private float peso; 
     private String categoria;
     private int vitorias;
     private int derrotas;
