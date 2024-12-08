@@ -21,14 +21,9 @@ public class TimeFutsal {
 
     public void contratarTecnico (TecnicoFutsal tecnico){
         
-
-         // Verifica se o técnico passado não é nulo
-         if (tecnico != null) {
             this.tecnico = tecnico; // Atribui o técnico ao time
             System.out.println("Técnico " + tecnico.getNome() + " contratado com sucesso para o time " + this.nome);
-        } else {
-            System.out.println("Técnico inválido!");
-        }
+       
     }
 
     public void contratarJogador(JogadorFutsal jogador) {
@@ -48,43 +43,32 @@ public class TimeFutsal {
     }
 
     public void gerarTimeRandom() {
-        Random random = new Random();
+        
+        String[] nomesJogadores = {"Firmirno", "Romario", "Bruno", "Falcão", "Davi luis", "Muralha", "Roberto", "Pele", "Maradona", "Fernandinho"};
+        PosicaoFutsal[] posicoes = {PosicaoFutsal.FIXO, PosicaoFutsal.ALA, PosicaoFutsal.ALA, PosicaoFutsal.GOLEIRO, PosicaoFutsal.PIVO}; 
 
-        // Criando um técnico aleatório
-        int idadeTecnico = 30 + random.nextInt(25); // Idade entre 30 e 54
-        // Gerando a especialidade e os pontos de especialidade aleatoriamente
-        Especialidade[] especialidades = Especialidade.values();
-        Especialidade especialidadeAleatoria = especialidades[random.nextInt(especialidades.length)];
-        int pontosEspecialidade = random.nextInt(5) + 1; // Pontos de 1 a 5
-        TecnicoFutsal tecnicoAleatorio = new TecnicoFutsal("Técnico " + (random.nextInt(100) + 1), idadeTecnico);
-        tecnicoAleatorio.setEspecialidade(especialidadeAleatoria);
-        tecnicoAleatorio.setPontosEspecialidade(pontosEspecialidade);
-        this.contratarTecnico(tecnicoAleatorio);
-    
-        // Gerando números de camisas de 1 a 20 sem repetição
-        java.util.List<Integer> numeros = new java.util.ArrayList<>();
-        for (int i = 1; i <= 20; i++) {
-            numeros.add(i);
+        Random rand = new Random();
+
+        for(int i = 0; i < posicoes.length; i++) {
+            String nome = nomesJogadores[rand.nextInt(nomesJogadores.length)] + "_" + (i + 1);
+            int idade = rand.nextInt(15) + 18; 
+            PosicaoFutsal posicao = posicoes[i];
+
+            JogadorFutsal jogador = new JogadorFutsal(nome, idade, posicao);
+            jogadores.add(jogador);
         }
-        java.util.Collections.shuffle(numeros); // Embaralha os números
-    
-        // Gerando até 5 jogadores aleatórios
-        for (int i = 0; i < 5; i++) { // Máximo de 5 jogadores
-            String nomeJogador = "Jogador " + (random.nextInt(100) + 1);
-            int idadeJogador = random.nextInt(10) + 18; // Idade entre 18 e 27
-            PosicaoFutsal[] posicoes = PosicaoFutsal.values();
-            PosicaoFutsal posicaoJogador = posicoes[random.nextInt(posicoes.length)];
-            int numero = numeros.remove(0); // Remove o primeiro número disponível
-    
-            // Criando o jogador com número de camisa único
-            JogadorFutsal jogador = new JogadorFutsal(nomeJogador, idadeJogador, posicaoJogador);
-            jogador.setNumero(numero);
-    
-            // Contratando o jogador
-            this.contratarJogador(jogador);
+
+        String nomeTecnico = "Tec_" + nomesJogadores[rand.nextInt(nomesJogadores.length)];
+        int idadeTecnico = 35 + rand.nextInt(30); 
+        tecnico = new TecnicoFutsal(nomeTecnico, idadeTecnico);
+
+        System.out.println("Time gerado automaticamente:"); 
+        for (JogadorFutsal jogador : jogadores) {
+            System.out.println("Nome: " + jogador.getNome() + ", Idade: " + jogador.getIdade() + ", Posicionamento: " + jogador.getPosicao() + ", Ataque: " + jogador.getPontos_ataque() + ", Defesa: " + jogador.getPontos_defesa());  
         }
-    
-        System.out.println("Time " + this.nome + " gerado com sucesso!");
+        System.out.println("Técnico: " + tecnico.getNome() + ", Idade: " + tecnico.getIdade()); 
+
+        
     }
     
 
@@ -142,22 +126,23 @@ public class TimeFutsal {
     
 
     public int registrarGol () {
-    // Chama o método goleador para determinar qual jogador marcou o gol
-    int indiceGoleador = goleador(null, null);
 
-    // Verifica se o índice do goleador é válido
-    if (indiceGoleador == -1) {
-        System.out.println("Erro: Não foi possível determinar o goleador.");
-        return -1; // Retorna -1 em caso de erro
-    }
+        int[] pontosAtaque = new int[jogadores.size()];
+        int[] pontosAcumulados = new int[jogadores.size()];
+    
+        // Preenche o array de pontos de ataque
+        for (int i = 0; i < jogadores.size(); i++) {
+            pontosAtaque[i] = jogadores.get(i).getPontos_ataque();
+        }
+    
+        // Determina qual jogador marcou o gol
+        int indiceGoleador = goleador(pontosAtaque, pontosAcumulados);
 
-    // Obtém o jogador que marcou o gol
-    JogadorFutsal jogador = this.jogadores.get(indiceGoleador);
+         // Obtém o jogador que marcou o gol
+    JogadorFutsal jogador = jogadores.get(indiceGoleador);
 
-    // Registra o gol para o jogador (presumindo que o método registrarGol() exista em JogadorFutsal)
-    jogador.registrarGol(); 
-
-    // Incrementa os gols do time
+    // Incrementa os gols marcados pelo jogador e pelo time
+    jogador.registrarGol(); // Assumindo que existe este método em `JogadorFutsal`
     this.incrementaGolsMarcados(1);
 
     // Exibe uma mensagem com o nome do jogador que marcou
@@ -167,32 +152,43 @@ public class TimeFutsal {
     return indiceGoleador;
  }
     
- private int goleador(int[] pontosAtaque, int[] pontosAcumulados) {
-    Random random = new Random();
-    
-    // Calcula o total de pontos de ataque
+ private int goleador(int [] pontosAtaque, int[] pontosAcumulados) {
     int totalPontosAtaque = 0;
-    for (int pontos : pontosAtaque) {
-        totalPontosAtaque += pontos;  // Somando os pontos de ataque de cada jogador
+
+    // Calcula o total de pontos de ataque e preenche o array de pontos acumulados
+    for (int i = 0; i < pontosAtaque.length; i++) {
+        totalPontosAtaque += pontosAtaque[i];
+        pontosAcumulados[i] = totalPontosAtaque;
     }
 
-    // Gera um número aleatório entre 1 e totalPontosAtaque
-    int pontoEscolhido = random.nextInt(totalPontosAtaque) + 1;
-
-    // Percorre os pontos acumulados para encontrar o jogador que marcou o gol
-    for (int i = 0; i < pontosAcumulados.length; i++) {
-        if (pontosAcumulados[i] >= pontoEscolhido) {
-            return i;  // Retorna o índice do jogador que marcou o gol
-        }
-    }
-
-    return -1;  // Retorna -1 caso ocorra algum erro
+     // Gera um número aleatório entre 1 e totalPontosAtaque
+     Random random = new Random();
+     int pontoEscolhido = random.nextInt(totalPontosAtaque) + 1;
+ 
+     // Determina o jogador com base nos pontos acumulados
+     for (int i = 0; i < pontosAcumulados.length; i++) {
+         if (pontoEscolhido <= pontosAcumulados[i]) {
+             return i; // Retorna o índice do jogador
+         }
+     }
+ 
+     return -1; // Retorna -1 caso ocorra algum erro
 }
     
     public void exibirTime(){
         System.out.println("Time: " + this.nome);
         System.out.println("tecnico: " + tecnico.getNome());
-        System.out.println("Jogadores:");
+        System.out.println("\nJogadores:");
+        for (JogadorFutsal jogador : jogadores) {
+            System.out.println(" - Nome: " + jogador.getNome() + 
+                               " | Idade: " + jogador.getIdade() + 
+                               " | Posição: " + jogador.getPosicao() + 
+                               " | Número: " + jogador.getNumero() +
+                               " | Ataque: " + jogador.getPontos_ataque() + 
+                               " | Defesa: " + jogador.getPontos_defesa());
+        }
+
+
         
     }
     public void exibirTecnico() {

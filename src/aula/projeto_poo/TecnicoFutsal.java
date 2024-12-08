@@ -5,6 +5,8 @@ import java.util.Random;
 public class TecnicoFutsal {
     private String nome;
     private int idade;
+    public static final int TECNICO_IDADE_MINIMA = 25;
+    public static final int TECNICO_ESPECIALIDADE_MAXIMA = 5;
     private PosicaoFutsal posicao;
     private Especialidade especialidade;
     private int pontosEspecialidade;
