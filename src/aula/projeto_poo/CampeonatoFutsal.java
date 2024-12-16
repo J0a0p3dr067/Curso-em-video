@@ -119,20 +119,44 @@ public class CampeonatoFutsal {
     }
 
     public void exibirTabelaGoleadores() {
+       
         ArrayList<JogadorFutsal> goleadores = this.goleadoresCampeonato();
         this.ordenarGoleadores(goleadores);
-
+    
         System.out.print("\n\n");
         System.out.println("********************* TABELA DE GOLEADORES ********************");
         System.out.println("---------------------------------------------------------------");
         System.out.println("   NOME         GOLS      TIME");
         System.out.println("---------------------------------------------------------------");
         for (JogadorFutsal jogador : goleadores) {
-            String nome_time [] = jogador.getNome().split("_");
-
-            System.out.println(" " + nome_time[0] + "\t" + jogador.getGolsCampeonato() + "\t" + nome_time[1]);
+            // Divide o nome do jogador baseado no "_"
+            String[] nome_time = jogador.getNome().split("_");
+    
+            // Verifica se o nome e o time foram corretamente separados
+            String nomeJogador = nome_time.length > 0 ? nome_time[0] : "Desconhecido";
+            String nomeTime = nome_time.length > 1 ? nome_time[1] : "Desconhecido";
+    
+            // Exibe os dados formatados
+            System.out.printf("%-15s %-10d  time: %-15s\n",  nomeJogador,  jogador.getGolsCampeonato(), nomeTime);
         }
         System.out.println("---------------------------------------------------------------");
+
+
+        
+        //  ArrayList<JogadorFutsal> goleadores = this.goleadoresCampeonato();
+        //  this.ordenarGoleadores(goleadores);
+
+        // System.out.print("\n\n");
+        // System.out.println("********************* TABELA DE GOLEADORES ********************");
+        // System.out.println("---------------------------------------------------------------");
+        // System.out.println("   NOME         GOLS      TIME");
+        // System.out.println("---------------------------------------------------------------");
+        // for (JogadorFutsal jogador : goleadores) {
+        //     String nome_time [] = jogador.getNome().split("_");
+
+        //     System.out.println(" " + nome_time[0] + "\t" + jogador.getGolsCampeonato() + "\t" + "Time: " + "\t" + nome_time[1]);
+        // }
+        // System.out.println("---------------------------------------------------------------");
     }
     
     private void ordenarGoleadores(ArrayList<JogadorFutsal> goleadores) {

@@ -77,10 +77,7 @@ public class JogadorFutsal {
     }
 
     public void setNome(String nome) {
-        if (this.idade >= 18  ) {
-            this.nome = nome;
 
-        }
     }
 
     public int getIdade() {
@@ -88,7 +85,10 @@ public class JogadorFutsal {
     }
 
     public void setIdade(int idade) {
-        this.idade = idade;
+      if (this.idade >= 18) {
+          this.idade = idade;
+        
+      }
     }
 
     public int getNumero() {

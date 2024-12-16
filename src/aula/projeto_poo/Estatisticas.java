@@ -75,18 +75,14 @@ public class Estatisticas {
         System.out.println("gols marcardos " + getGolsMarcados());
         System.out.println("Gols sofridos " + getGols_sofridos());
     }
+    
+    
+
     @Override
     public String toString() {
-         int saldoDeGols = this.golsMarcados - this.gols_sofridos;
-    return String.format(
-        "Vitórias: %d | Derrotas: %d | Empates: %d | Gols Marcados: %d | Gols Sofridos: %d | Saldo de Gols: %d",
-        this.vitorias,
-        this.derrotas,
-        this.empates,
-        this.golsMarcados,
-        this.gols_sofridos,
-        saldoDeGols
-    );
+        return "Estatisticas [titulo=" + titulo + ", jogo=" + jogo + ", pontos=" + pontos + ", vitorias=" + vitorias
+                + ", empates=" + empates + ", derrotas=" + derrotas + ", golsMarcados=" + golsMarcados
+                + ", gols_sofridos=" + gols_sofridos + ", saldoGols()=" + saldoGols() + "]";
     }
 
     /**
