@@ -2,25 +2,33 @@ package curso_em_video.aula14;
 
 public class Video {
     private String titulo;
-    private String avaliacao;
+    private int avaliacao;
     private int views, curtidas;
     private boolean reproduzindo;
 
 
 
 
+    public Video (String titulo) {
+        this.titulo = titulo;
+        this.avaliacao = 1;
+        this.views = 0;
+        this.curtidas = 0;
+        this.reproduzindo = false;
+    }
+   
 
-    
+
     public String getTitulo() {
         return titulo;
     }
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-    public String getAvaliacao() {
+    public int getAvaliacao() {
         return avaliacao;
     }
-    public void setAvaliacao(String avaliacao) {
+    public void setAvaliacao(int avaliacao) {
         this.avaliacao = avaliacao;
     }
     public int getViews() {
@@ -40,6 +48,27 @@ public class Video {
     }
     public void setReproduzindo(boolean reproduzindo) {
         this.reproduzindo = reproduzindo;
+    }
+
+    @Override
+    public void play(){
+    
+    }
+    @Override
+    public void pause(){
+    
+    }
+    @Override
+    public void like(){
+    
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Video [titulo=" + titulo + ", avaliacao=" + avaliacao + ", views=" + views + ", curtidas=" + curtidas
+                + ", reproduzindo=" + reproduzindo + "]";
     }
 
 
