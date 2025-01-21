@@ -12,7 +12,7 @@ public class TimeFutsal {
     
     public TimeFutsal (String nome) {
         this.nome = nome;
-        this.jogadores = new ArrayList<>();
+        this.jogadores = new ArrayList<JogadorFutsal>();
         this.estatisticas = new Estatisticas(); 
         this.tecnico = null; 
 
@@ -102,17 +102,17 @@ public class TimeFutsal {
     public int pontosAtaque() {
         int totalPontosAtaque = 0;
 
-    // Soma os pontos de ataque de todos os jogadores
-    for (JogadorFutsal jogador : jogadores) {
-        totalPontosAtaque += jogador.getPontos_ataque();
-    }
-    
-    // Adiciona os pontos de especialidade do técnico se ele for ofensivo
-    if (tecnico.getEspecialidade() == Especialidade.OFENSIVA) {
-        totalPontosAtaque += tecnico.getPontosEspecialidade();
-    }
+            // Soma os pontos de ataque de todos os jogadores
+        for (JogadorFutsal jogador : jogadores) {
+            totalPontosAtaque += jogador.getPontos_ataque();
+        }
+        
+        // Adiciona os pontos de especialidade do técnico se ele for ofensivo
+        if (tecnico.getEspecialidade() == Especialidade.OFENSIVA) {
+            totalPontosAtaque += tecnico.getPontosEspecialidade();
+        }
 
-    return totalPontosAtaque;
+        return totalPontosAtaque;
     }
     public int pontosDefesa () {
         int totalPontosDefesa = 0;

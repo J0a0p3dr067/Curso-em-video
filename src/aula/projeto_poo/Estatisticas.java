@@ -40,16 +40,19 @@ public class Estatisticas {
     public void incrementarVitorias() {
        this.setVitorias(this.getVitorias() + 1); 
        this.incrementarPontos(3);
+       this.jogo += 1;
        
     }
 
     public void incrementarEmpates() {
         this.setEmpates(this.getEmpates() + 1);
         this.incrementarPontos(1);
+        this.jogo += 1;
     }
 
     public void incrementarDerrotas() {
         this.setDerrotas(this.getDerrotas() + 1);
+        this.jogo += 1;
     }
 
     
@@ -80,9 +83,9 @@ public class Estatisticas {
 
     @Override
     public String toString() {
-        return "Estatisticas [titulo=" + titulo + ", jogo=" + jogo + ", pontos=" + pontos + ", vitorias=" + vitorias
-                + ", empates=" + empates + ", derrotas=" + derrotas + ", golsMarcados=" + golsMarcados
-                + ", gols_sofridos=" + gols_sofridos + ", saldoGols()=" + saldoGols() + "]";
+        return "  " + titulo + ",  " + jogo + ",  " + pontos + ",  " + vitorias
+                + ",  " + empates + ",  " + derrotas + ",  " + golsMarcados
+                + ",  " + gols_sofridos + ",  " + saldoGols() + "]";
     }
 
     /**
