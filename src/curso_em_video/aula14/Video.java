@@ -1,6 +1,6 @@
 package curso_em_video.aula14;
 
-public class Video {
+public class Video implements AcoesVideo {
     private String titulo;
     private int avaliacao;
     private int views, curtidas;
@@ -29,7 +29,13 @@ public class Video {
         return avaliacao;
     }
     public void setAvaliacao(int avaliacao) {
-        this.avaliacao = avaliacao;
+       int nova;
+
+       nova = (int)( (this.avaliacao + avaliacao) / this.views);
+        
+        this.avaliacao = nova;
+
+
     }
     public int getViews() {
         return views;
@@ -52,15 +58,15 @@ public class Video {
 
     @Override
     public void play(){
-    
+        this.reproduzindo = true;
     }
     @Override
     public void pause(){
-    
+        this.reproduzindo = false;
     }
     @Override
     public void like(){
-    
+        this.curtidas++;
     }
 
 

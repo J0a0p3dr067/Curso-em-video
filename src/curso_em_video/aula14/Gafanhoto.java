@@ -33,7 +33,7 @@ public class Gafanhoto extends Pessoa {
     }
 
 
-    public int isTotAssitido() {
+    public int getTotAssitido() {
         return totAssitido;
     }
 
@@ -43,5 +43,14 @@ public class Gafanhoto extends Pessoa {
     }
 
 
+
+
+
+    @Override
+    public String toString() {
+        return "Gafanhoto [login=" + login + ", totAssitido=" + totAssitido + super.toString()+ "]";
+    }
+
+    
     
 }
